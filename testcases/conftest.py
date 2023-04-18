@@ -1,9 +1,8 @@
 import pytest
-from pages.ebay_actions import Ebay
+from base.bot import Bot
 
 
 @pytest.fixture(scope='module')
 def ebay():
-    ebay = Ebay()
+    ebay = Bot()
     yield ebay
-    ebay.quit()
