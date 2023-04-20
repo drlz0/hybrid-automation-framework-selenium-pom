@@ -35,9 +35,7 @@ class Bot:
     def choose_category(self, category):
         home_page = self.open_home_page()
         home_page.choose_category(category)
-        search_page = SearchPage(self.driver)
-        search_page.wait_until_loaded()
-        return search_page
+        return SearchPage(self.driver)
 
     def filter_search_results(self):
         search_page = SearchPage(self.driver)
