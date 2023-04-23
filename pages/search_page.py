@@ -1,14 +1,14 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from prettytable import PrettyTable
 
 from utilities.ebay_filtration import EbayFiltration
 from utilities.ebay_scrap import EbayScrap
 
+from pages.base_page import BasePage
 
-class SearchPage:
+
+class SearchPage(BasePage):
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     def filtration(self):

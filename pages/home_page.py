@@ -2,15 +2,18 @@ from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import utilities.constants as const
+
+from pages.base_page import BasePage
+from pages.search_page import SearchPage
+from utilities.logs_and_data import LogsAndData
 
 
-class HomePage:
+class HomePage(BasePage):
+    logs = LogsAndData.custom_logger()
+
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
-
-    def open(self):
-        self.driver.get(const.EBAY_URL)
 
     def choose_category(self, category):
         category_filter = self.driver.find_element(By.ID, 'gh-cat')
@@ -24,3 +27,10 @@ class HomePage:
         search_box.clear()
         search_box.send_keys(query)
         search_box.send_keys(Keys.RETURN)
+
+    def input_cat_and_query(self, cat, this_query):
+        self.choose_category(category=cat)
+        self.type_query(query=this_query)
+        self.logs.debug("inputted query: " + this_query)
+        search_click_result = SearchPage(self.driver)
+        return search_click_result  # Making connection between pages

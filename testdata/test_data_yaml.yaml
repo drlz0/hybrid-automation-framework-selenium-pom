@@ -1,0 +1,10 @@
+---
+test1:
+  test_category: Books
+  test_query: fantasy book
+  test_amount: 10
+test2:
+  test_category: Books
+  test_query: python
+  test_amount: 7
+...
